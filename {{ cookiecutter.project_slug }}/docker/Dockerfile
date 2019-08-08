@@ -1,12 +1,12 @@
 {%- if cookiecutter.use_nvidia_docker == 'yes' -%}
-FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
+FROM nvidia/cuda:latest
 {%- else -%}
-FROM ubuntu:16.04
+FROM ubuntu:latest
 {%- endif %}
 
 RUN apt-get update && apt-get install -y \
   git \
-  python3.5 \
+  python3.7 \
   python3-pip \
   python3-dev
 
