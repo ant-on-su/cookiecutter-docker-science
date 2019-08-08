@@ -46,7 +46,7 @@ endef
 ###########################################################################################################
 
 {%- if cookiecutter.use_nvidia_docker == 'yes' %}
-export DOCKER=nvidia-docker
+export DOCKER=docker
 {%- else %}
 export DOCKER=docker
 {%- endif %}
@@ -111,7 +111,7 @@ start-container: ## start docker container
 	$(DOCKER) attach $(CONTAINER_NAME)
 
 jupyter: ## start Jupyter Notebook server
-	jupyter-notebook --ip=0.0.0.0 --port=${JUPYTER_CONTAINER_PORT}
+	jupyter-notebook --no-browser --ip=0.0.0.0 --port=${JUPYTER_CONTAINER_PORT}
 
 test: ## run test cases in tests directory
 	$(PYTHON) -m unittest discover
