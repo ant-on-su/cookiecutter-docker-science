@@ -46,7 +46,7 @@ endef
 ###########################################################################################################
 
 {%- if cookiecutter.use_nvidia_docker == 'yes' %}
-export DOCKER=docker
+export DOCKER=nvidia-docker
 {%- else %}
 export DOCKER=docker
 {%- endif %}
@@ -148,3 +148,5 @@ clean-container: ## remove Docker container
 
 clean-image: ## remove Docker image
 	-$(DOCKER) image rm $(IMAGE_NAME)
+
+refresh: clean-docker init-docker create-container ##for updated packages(requirements.txt) cleans up docker container and image, then creates it anew
